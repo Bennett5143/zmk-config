@@ -39,7 +39,7 @@
             //                    | GUI |     | SPC   | ENT |     | ALT |
 
             bindings = <
-&none  &kp LS(LA(NUMBER_7))  &kp LS(NUMBER_6)  &kp LA(NUMBER_7)  &kp LS(NUMBER_5)  &kp LA(L)  &kp CARET  &kp BSLH  &kp LS(NUMBER_1)  &kp LS(MINUS)  &kp LS(NUMBER_3)  &none  &none  &kp LESS_THAN  &kp LA(NUMBER_5)  &kp LA(NUMBER_8)  &kp LS(NUMBER_8)  &kp LS(NUMBER_2)  &kp LS(BSLH)  &kp LS(NUMBER_9)  &kp LA(NUMBER_9)  &kp LA(NUMBER_6)  &kp LS(LESS_THAN)  &none  &none  &kp LS(NUMBER_7)  &kp EQUAL  &kp LS(EQUAL)  &kp LA(N)  &kp LS(SLASH)  &kp LA(E)  &kp LS(NUMBER_4)  &kp LS(COMMA)  &kp LS(PERIOD)  &mt LA(LC(LG(LEFT_SHIFT))) ESCAPE  &none  &kp TAB  &to 0  &kp DELETE  &kp BACKSPACE  &mt LEFT_SHIFT ENTER  &to 2
+&none  &kp LS(LA(NUMBER_7))  &kp LS(NUMBER_6)  &kp LA(NUMBER_7)  &kp LS(NUMBER_5)  &kp LA(L)  &kp CARET  &kp BSLH  &kp LS(NUMBER_1)  &kp LS(MINUS)  &kp LS(NUMBER_3)  &none  &none  &kp NON_US_BSLH  &kp LA(NUMBER_5)  &kp LA(NUMBER_8)  &kp LS(NUMBER_8)  &kp LS(NUMBER_2)  &kp LS(BSLH)  &kp LS(NUMBER_9)  &kp LA(NUMBER_9)  &kp LA(NUMBER_6)  &kp LS(NON_US_BSLH)  &none  &none  &kp LS(NUMBER_7)  &kp EQUAL  &kp LS(EQUAL)  &kp LA(N)  &kp LS(SLASH)  &kp LA(E)  &kp LS(NUMBER_4)  &kp LS(COMMA)  &kp LS(PERIOD)  &mt LA(LC(LG(LEFT_SHIFT))) ESCAPE  &none  &kp TAB  &to 0  &kp DELETE  &kp BACKSPACE  &mt LEFT_SHIFT ENTER  &to 2
             >;
         };
 
