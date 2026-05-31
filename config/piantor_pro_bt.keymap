@@ -66,7 +66,7 @@
             //  ä   ß  |           
 
             bindings = <
-&none  &trans  &trans  &trans  &trans  &trans  &trans  &kp LBKT  &trans  &kp SEMI  &trans  &none  &none  &kp SINGLE_QUOTE  &kp MINUS  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none  &none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none  &trans  &trans  &trans  &trans  &trans  &trans
+&none  &trans  &trans  &trans  &trans  &trans  &trans  &kp LBKT  &trans  &kp SEMI  &trans  &none  &none  &kp SINGLE_QUOTE  &kp MINUS  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none  &none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none  &trans  &trans  &trans  &trans  &kp LS(ENTER)  &trans
             >;
         };
 
