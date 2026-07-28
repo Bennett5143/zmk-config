@@ -36,6 +36,14 @@
             hold-trigger-on-release;
             hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38 39 40 41>;
         };
+        sht: shift_home_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <175>;
+            bindings = <&kp>, <&to>;
+        };
     };
 };
 
@@ -46,14 +54,18 @@
         default_layer {
             display-name = "L0";
 
-            // default_layer (L0) — Tap = Buchstabe, Hold = Mod auf der Home-Row
+            // default_layer (L0) — tap = letter, hold = mod on home row
             //  Q   W   E   R   T  |  Y   U   I   O   P
-            //  A   S   D   F   G  |  H   J   K   L  SL3     S=Ctrl D=Opt F=Cmd | J=Cmd K=Opt L=Ctrl
-            //  Z   X   C   V   B  |  N   M   ,   .  ESC     SL3 = sticky →L3 (Umlaute)
-            //           TAB SPC DEL | BSPC ENT →L1          ESC = Tap Esc / Hold Hyper (⌃⌥⌘⇧)
+            //  A   S   D   F   G  |  H   J   K   L  SL      S=Ctrl D=Opt F=Cmd | J=Cmd K=Opt L=Ctrl
+            //  Z   X   C   V   B  |  N   M   ,   .  ESC     SL = sticky umlaut layer
+            //     TAB SPC ⇧/→L0 | BSPC ENT →L1              ESC = tap Esc / hold Hyper (⌃⌥⌘⇧)
+            //                                               ⇧/→L0 = hold Shift / tap go to L0
 
             bindings = <
-&none  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp I  &kp O  &kp P  &none  &none  &kp A  &hml LCTRL S  &hml LEFT_ALT D  &hml LCMD F  &kp G  &kp H  &hmr RCMD J  &hmr RIGHT_ALT K  &hmr RCTRL L  &sl 3  &none  &none  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp M  &kp COMMA  &kp DOT  &mt LA(LC(LG(LEFT_SHIFT))) ESCAPE  &none  &kp TAB  &kp SPACE  &kp DELETE  &kp BACKSPACE  &mt LEFT_SHIFT ENTER  &to 1
+&none  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp I  &kp O  &kp P  &none
+&none  &kp A  &hml LCTRL S  &hml LEFT_ALT D  &hml LCMD F  &kp G  &kp H  &hmr RCMD J  &hmr RIGHT_ALT K  &hmr RCTRL L  &sl 3  &none
+&none  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp M  &kp COMMA  &kp DOT  &mt LA(LC(LG(LEFT_SHIFT))) ESCAPE  &none
+&kp TAB  &kp SPACE  &sht LEFT_SHIFT 0  &kp BACKSPACE  &kp ENTER  &to 1
             >;
         };
 
@@ -67,7 +79,7 @@
             //           TAB →L0 DEL | BSPC ENT →L2            
 
             bindings = <
-&none  &kp LS(LA(NUMBER_7))  &kp LS(NUMBER_6)  &kp LA(NUMBER_7)  &kp LS(NUMBER_5)  &kp LA(L)  &kp GRAVE  &kp BSLH  &kp LS(NUMBER_1)  &kp LS(MINUS)  &kp LS(NUMBER_3)  &none  &none  &kp NON_US_BSLH  &kp LA(NUMBER_5)  &kp LA(NUMBER_8)  &kp LS(NUMBER_8)  &kp LS(NUMBER_2)  &kp LS(BSLH)  &kp LS(NUMBER_9)  &kp LA(NUMBER_9)  &kp LA(NUMBER_6)  &kp LS(NON_US_BSLH)  &none  &none  &kp LS(NUMBER_7)  &kp EQUAL  &kp LS(EQUAL)  &kp LA(N)  &kp LS(SLASH)  &kp LA(E)  &kp LS(NUMBER_4)  &kp LS(COMMA)  &kp LS(PERIOD)  &mt LA(LC(LG(LEFT_SHIFT))) ESCAPE  &none  &kp TAB  &to 0  &kp DELETE  &kp BACKSPACE  &mt LEFT_SHIFT ENTER  &to 2
+&none  &kp LS(LA(NUMBER_7))  &kp LS(NUMBER_6)  &kp LA(NUMBER_7)  &kp LS(NUMBER_5)  &kp LA(L)  &kp GRAVE  &kp BSLH  &kp LS(NUMBER_1)  &kp LS(MINUS)  &kp LS(NUMBER_3)  &none  &none  &kp NON_US_BSLH  &kp LA(NUMBER_5)  &kp LA(NUMBER_8)  &kp LS(NUMBER_8)  &kp LS(NUMBER_2)  &kp LS(BSLH)  &kp LS(NUMBER_9)  &kp LA(NUMBER_9)  &kp LA(NUMBER_6)  &kp LS(NON_US_BSLH)  &none  &none  &kp LS(NUMBER_7)  &kp EQUAL  &kp LS(EQUAL)  &kp LA(N)  &kp LS(SLASH)  &kp LA(E)  &kp LS(NUMBER_4)  &kp LS(COMMA)  &kp LS(PERIOD)  &mt LA(LC(LG(LEFT_SHIFT))) ESCAPE  &none  &kp TAB  &kp SPACE  &sht LEFT_SHIFT 0  &kp BACKSPACE  &kp ENTER  &to 2
             >;
         };
 
@@ -81,7 +93,7 @@
             //           TAB →L0 DEL | BSPC ENT →L1
 
             bindings = <
-&none  &kp LS(RBKT)  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp RBKT  &kp C_PP  &kp C_PREV  &kp C_NEXT  &kp C_BRIGHTNESS_INC  &rgb_ug RGB_TOG  &none  &none  &kp LS(NUMBER_0)  &kp NUMBER_4  &hml LEFT_ALT NUMBER_5  &hml LCMD NUMBER_6  &kp NUMBER_0  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &none  &none  &none  &kp LS(NUMBER_7)  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp SLASH  &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_BRI_DN  &mt LA(LC(LG(LEFT_SHIFT))) ESCAPE  &none  &kp TAB  &to 0  &kp DELETE  &kp BACKSPACE  &mt LEFT_SHIFT ENTER  &to 1
+&none  &kp LS(RBKT)  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp RBKT  &kp C_PP  &kp C_PREV  &kp C_NEXT  &kp C_BRIGHTNESS_INC  &rgb_ug RGB_TOG  &none  &none  &kp LS(NUMBER_0)  &kp NUMBER_4  &hml LEFT_ALT NUMBER_5  &hml LCMD NUMBER_6  &kp NUMBER_0  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &none  &none  &none  &kp LS(NUMBER_7)  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp SLASH  &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_BRI_DN  &mt LA(LC(LG(LEFT_SHIFT))) ESCAPE  &none  &kp TAB  &kp SPACE  &sht LEFT_SHIFT 0  &kp BACKSPACE  &kp ENTER  &to 1
             >;
         };
 
@@ -93,7 +105,7 @@
             //  ä   ß  |           
 
             bindings = <
-&none  &trans  &trans  &trans  &trans  &trans  &trans  &kp LBKT  &trans  &kp SEMI  &trans  &none  &none  &kp SINGLE_QUOTE  &kp MINUS  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none  &none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none  &trans  &trans  &trans  &trans  &kp LS(ENTER)  &trans
+&none  &trans  &trans  &trans  &trans  &trans  &trans  &kp LBKT  &trans  &kp SEMI  &trans  &none  &none  &kp SINGLE_QUOTE  &kp MINUS  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none  &none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none  &trans  &trans  &trans  &kp DELETE  &kp LS(ENTER)  &trans
             >;
         };
 
