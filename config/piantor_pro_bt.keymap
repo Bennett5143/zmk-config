@@ -6,6 +6,7 @@
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/rgb.h>
 
 / {
@@ -112,17 +113,20 @@
             >;
         };
 
-        numberXctrl_layer {
-            display-name = "L2";
+        sym_layer {
+            display-name = "SYM";
 
-            // numberXctrl_layer (L2) — Zahlen / Navigation / Medien
-            //  *   7   8   9   +  | ▶⏸  ⏮  ⏭  ☀+
-            //  =   4   5   6   0  |  ←   ↓   ↑   →          5=Hold Opt, 6=Hold Cmd
-            //  /   1   2   3   -  | 🔇  🔉  🔊  ☀-  ESC
-            //           TAB →L0 DEL | BSPC ENT →L1
+            // sym_layer (L2) — remaining symbols / media / mouse
+            //  ~   &   |   ^   %  | 🔇  V−  V+  LED  ⊞     ⊞ = toggle mac/win mode
+            //  @   $   _   \   #  | m←  m↓  m↑  m→  SL     $=Ctrl _=Opt \=Cmd (hold)
+            //  ´   `   §   €      | Lc  Rc  s↓  s↑  ESC    m = mouse, c = click, s = scroll
+            //     TAB SPC ⇧/→L0 | BSPC ENT →L1
 
             bindings = <
-&none  &kp LS(RBKT)  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp RBKT  &kp C_PP  &kp C_PREV  &kp C_NEXT  &kp C_BRIGHTNESS_INC  &rgb_ug RGB_TOG  &none  &none  &kp LS(NUMBER_0)  &kp NUMBER_4  &hml LEFT_ALT NUMBER_5  &hml LCMD NUMBER_6  &kp NUMBER_0  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &none  &none  &none  &kp LS(NUMBER_7)  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp SLASH  &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_BRI_DN  &mt LA(LC(LG(LEFT_SHIFT))) ESCAPE  &none  &kp TAB  &kp SPACE  &sht LEFT_SHIFT 0  &kp BACKSPACE  &kp ENTER  &to 1
+&none  &kp LA(N)  &kp LS(NUMBER_6)  &kp LA(NUMBER_7)  &kp GRAVE  &kp LS(NUMBER_5)  &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP  &rgb_ug RGB_TOG  &none  &none
+&none  &kp LA(L)  &hml LCTRL LS(NUMBER_4)  &hml LEFT_ALT LS(SLASH)  &hml LCMD LS(LA(NUMBER_7))  &kp BSLH  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &sl 3  &none
+&none  &kp EQUAL  &kp LS(EQUAL)  &kp LS(NUMBER_3)  &kp RA(E)  &none  &mkp LCLK  &mkp RCLK  &msc SCRL_DOWN  &msc SCRL_UP  &mt LA(LC(LG(LEFT_SHIFT))) ESCAPE  &none
+&kp TAB  &kp SPACE  &sht LEFT_SHIFT 0  &kp BACKSPACE  &kp ENTER  &to 1
             >;
         };
 
