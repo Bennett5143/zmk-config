@@ -44,6 +44,32 @@
             quick-tap-ms = <175>;
             bindings = <&kp>, <&to>;
         };
+        // Bracket morphs: tap = opener, shift (thumb hold) = closer.
+        // mod-morph masks the triggering shift, so the alt-combos stay clean.
+        mm_par: morph_parens {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LS(NUMBER_8)>, <&kp LS(NUMBER_9)>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        mm_cur: morph_curly {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LA(NUMBER_8)>, <&kp LA(NUMBER_9)>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        mm_sqr: morph_square {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LA(NUMBER_5)>, <&kp LA(NUMBER_6)>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        mm_quot: morph_quotes {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LS(NUMBER_2)>, <&kp LS(BSLH)>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
     };
 };
 
@@ -69,17 +95,20 @@
             >;
         };
 
-        symbol_layer {
-            display-name = "L1";
+        num_layer {
+            display-name = "NUM";
 
-            // symbol_layer (L1)
-            //  \   &   |   %   @  |  ^   #   !   ?   §
-            //  <   [   {   (   "  |  '   )   }   ]   >
-            //  /   ´   `   ~   _  |  €   $   ;   :  ESC
-            //           TAB →L0 DEL | BSPC ENT →L2            
+            // num_layer (L1) — numpad / navigation / brackets
+            //  *   7   8   9   +  |  "   (   {   [   <     top right: openers
+            //  =   4   5   6   0  |  ←   ↓   ↑   →  SL     hold thumb-Shift → ' ) } ] >
+            //  /   1   2   3   -  |  !   ?   ;   :  ESC    4=Ctrl 5=Opt 6=Cmd (hold)
+            //     TAB SPC ⇧/→L0 | BSPC ENT →L2            
 
             bindings = <
-&none  &kp LS(LA(NUMBER_7))  &kp LS(NUMBER_6)  &kp LA(NUMBER_7)  &kp LS(NUMBER_5)  &kp LA(L)  &kp GRAVE  &kp BSLH  &kp LS(NUMBER_1)  &kp LS(MINUS)  &kp LS(NUMBER_3)  &none  &none  &kp NON_US_BSLH  &kp LA(NUMBER_5)  &kp LA(NUMBER_8)  &kp LS(NUMBER_8)  &kp LS(NUMBER_2)  &kp LS(BSLH)  &kp LS(NUMBER_9)  &kp LA(NUMBER_9)  &kp LA(NUMBER_6)  &kp LS(NON_US_BSLH)  &none  &none  &kp LS(NUMBER_7)  &kp EQUAL  &kp LS(EQUAL)  &kp LA(N)  &kp LS(SLASH)  &kp LA(E)  &kp LS(NUMBER_4)  &kp LS(COMMA)  &kp LS(PERIOD)  &mt LA(LC(LG(LEFT_SHIFT))) ESCAPE  &none  &kp TAB  &kp SPACE  &sht LEFT_SHIFT 0  &kp BACKSPACE  &kp ENTER  &to 2
+&none  &kp LS(RBKT)  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp RBKT  &mm_quot  &mm_par  &mm_cur  &mm_sqr  &kp NON_US_BSLH  &none
+&none  &kp LS(NUMBER_0)  &hml LCTRL NUMBER_4  &hml LEFT_ALT NUMBER_5  &hml LCMD NUMBER_6  &kp NUMBER_0  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &sl 3  &none
+&none  &kp LS(NUMBER_7)  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp SLASH  &kp LS(NUMBER_1)  &kp LS(MINUS)  &kp LS(COMMA)  &kp LS(PERIOD)  &mt LA(LC(LG(LEFT_SHIFT))) ESCAPE  &none
+&kp TAB  &kp SPACE  &sht LEFT_SHIFT 0  &kp BACKSPACE  &kp ENTER  &to 2
             >;
         };
 
