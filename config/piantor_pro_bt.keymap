@@ -9,8 +9,41 @@
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/rgb.h>
 
+// Layer indices — order matters: the WIN_* fix layers must sit above the
+// layers they patch, and UMLAUT above everything so sticky umlauts (ß on
+// the S position) are never masked by the win fixes.
+#define BASE     0
+#define NUM      1
+#define SYM      2
+#define WIN      3
+#define WIN_BASE 4
+#define WIN_NUM  5
+#define WIN_SYM  6
+#define UMLAUT   7
+
 / {
     chosen { zmk,physical-layout = &default_layout; };
+};
+
+/ {
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        // WIN is a plain flag layer (all &trans), toggled with &tog WIN.
+        // While it is on, these fix layers overlay the mac layers with the
+        // Windows German AltGr codes and swapped home row mods.
+        win_base {
+            if-layers = <WIN BASE>;
+            then-layer = <WIN_BASE>;
+        };
+        win_num {
+            if-layers = <WIN NUM>;
+            then-layer = <WIN_NUM>;
+        };
+        win_sym {
+            if-layers = <WIN SYM>;
+            then-layer = <WIN_SYM>;
+        };
+    };
 };
 
 / {
@@ -71,6 +104,20 @@
             bindings = <&kp LS(NUMBER_2)>, <&kp LS(BSLH)>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+        // Windows German variants (AltGr codes); parens and quotes are
+        // positionally identical on both layouts and need no variant.
+        mm_cur_win: morph_curly_win {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp RA(NUMBER_7)>, <&kp RA(NUMBER_0)>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        mm_sqr_win: morph_square_win {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp RA(NUMBER_8)>, <&kp RA(NUMBER_9)>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
     };
 };
 
@@ -90,9 +137,9 @@
 
             bindings = <
 &none  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp I  &kp O  &kp P  &none
-&none  &kp A  &hml LCTRL S  &hml LEFT_ALT D  &hml LCMD F  &kp G  &kp H  &hmr RCMD J  &hmr RIGHT_ALT K  &hmr RCTRL L  &sl 3  &none
+&none  &kp A  &hml LCTRL S  &hml LEFT_ALT D  &hml LCMD F  &kp G  &kp H  &hmr RCMD J  &hmr RIGHT_ALT K  &hmr RCTRL L  &sl UMLAUT  &none
 &none  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp M  &kp COMMA  &kp DOT  &mt LA(LC(LG(LEFT_SHIFT))) ESCAPE  &none
-&kp TAB  &kp SPACE  &sht LEFT_SHIFT 0  &kp BACKSPACE  &kp ENTER  &to 1
+&kp TAB  &kp SPACE  &sht LEFT_SHIFT BASE  &kp BACKSPACE  &kp ENTER  &to NUM
             >;
         };
 
@@ -107,9 +154,9 @@
 
             bindings = <
 &none  &kp LS(RBKT)  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp RBKT  &mm_quot  &mm_par  &mm_cur  &mm_sqr  &kp NON_US_BSLH  &none
-&none  &kp LS(NUMBER_0)  &hml LCTRL NUMBER_4  &hml LEFT_ALT NUMBER_5  &hml LCMD NUMBER_6  &kp NUMBER_0  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &sl 3  &none
+&none  &kp LS(NUMBER_0)  &hml LCTRL NUMBER_4  &hml LEFT_ALT NUMBER_5  &hml LCMD NUMBER_6  &kp NUMBER_0  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &sl UMLAUT  &none
 &none  &kp LS(NUMBER_7)  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp SLASH  &kp LS(NUMBER_1)  &kp LS(MINUS)  &kp LS(COMMA)  &kp LS(PERIOD)  &mt LA(LC(LG(LEFT_SHIFT))) ESCAPE  &none
-&kp TAB  &kp SPACE  &sht LEFT_SHIFT 0  &kp BACKSPACE  &kp ENTER  &to 2
+&kp TAB  &kp SPACE  &sht LEFT_SHIFT BASE  &kp BACKSPACE  &kp ENTER  &to SYM
             >;
         };
 
@@ -123,57 +170,81 @@
             //     TAB SPC ⇧/→L0 | BSPC ENT →L1
 
             bindings = <
-&none  &kp LA(N)  &kp LS(NUMBER_6)  &kp LA(NUMBER_7)  &kp GRAVE  &kp LS(NUMBER_5)  &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP  &rgb_ug RGB_TOG  &none  &none
-&none  &kp LA(L)  &hml LCTRL LS(NUMBER_4)  &hml LEFT_ALT LS(SLASH)  &hml LCMD LS(LA(NUMBER_7))  &kp BSLH  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &sl 3  &none
+&none  &kp LA(N)  &kp LS(NUMBER_6)  &kp LA(NUMBER_7)  &kp GRAVE  &kp LS(NUMBER_5)  &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP  &rgb_ug RGB_TOG  &tog WIN  &none
+&none  &kp LA(L)  &hml LCTRL LS(NUMBER_4)  &hml LEFT_ALT LS(SLASH)  &hml LCMD LS(LA(NUMBER_7))  &kp BSLH  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &sl UMLAUT  &none
 &none  &kp EQUAL  &kp LS(EQUAL)  &kp LS(NUMBER_3)  &kp RA(E)  &none  &mkp LCLK  &mkp RCLK  &msc SCRL_DOWN  &msc SCRL_UP  &mt LA(LC(LG(LEFT_SHIFT))) ESCAPE  &none
-&kp TAB  &kp SPACE  &sht LEFT_SHIFT 0  &kp BACKSPACE  &kp ENTER  &to 1
+&kp TAB  &kp SPACE  &sht LEFT_SHIFT BASE  &kp BACKSPACE  &kp ENTER  &to NUM
             >;
         };
 
-        german_umlauts_layer {
-            display-name = "L3";
+        win_layer {
+            display-name = "WIN";
 
-            // german_umlauts_layer (L3) — Rest = &trans (fällt auf Base durch)
+            // win_layer (WIN) — pure flag, toggled from SYM; all &trans.
+            // conditional_layers maps WIN+<layer> to the fix layers below.
+
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans
+            >;
+        };
+
+        win_base_layer {
+            display-name = "WBASE";
+
+            // win_base_layer — home row mod swap for Windows:
+            // S=Win(GUI) F=Ctrl | J=Ctrl L=Win(GUI); D/K stay Alt (&trans).
+            // Always active in win mode (layer 0 stays on), so WIN_NUM and
+            // WIN_SYM re-declare these four positions.
+
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &hml LGUI S  &trans  &hml LCTRL F  &trans  &trans  &hmr RCTRL J  &trans  &hmr RGUI L  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans
+            >;
+        };
+
+        win_num_layer {
+            display-name = "WNUM";
+
+            // win_num_layer — AltGr bracket morphs for { and [ plus the four
+            // positions masked by WIN_BASE (4/6 with win mods, ↓/→ arrows).
+
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &mm_cur_win  &mm_sqr_win  &trans  &trans
+&trans  &trans  &hml LGUI NUMBER_4  &trans  &hml LCTRL NUMBER_6  &trans  &trans  &kp DOWN  &trans  &kp RIGHT  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans
+            >;
+        };
+
+        win_sym_layer {
+            display-name = "WSYM";
+
+            // win_sym_layer — AltGr codes for ~ | @ \ plus the four positions
+            // masked by WIN_BASE ($/\ with win mods, mouse ↓/→).
+
+            bindings = <
+&trans  &kp RA(RBKT)  &trans  &kp RA(NON_US_BSLH)  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &kp RA(Q)  &hml LGUI LS(NUMBER_4)  &trans  &hml LCTRL RA(MINUS)  &trans  &trans  &mmv MOVE_DOWN  &trans  &mmv MOVE_RIGHT  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans
+            >;
+        };
+
+        umlaut_layer {
+            display-name = "UML";
+
+            // umlaut_layer (UMLAUT) — sticky overlay via SL; rest = &trans
+            // thumbs: DEL on BSPC position, ⇧Enter on Enter position
             //         | ü       ö 
             //  ä   ß  |           
 
             bindings = <
 &none  &trans  &trans  &trans  &trans  &trans  &trans  &kp LBKT  &trans  &kp SEMI  &trans  &none  &none  &kp SINGLE_QUOTE  &kp MINUS  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none  &none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none  &trans  &trans  &trans  &kp DELETE  &kp LS(ENTER)  &trans
-            >;
-        };
-
-        extra_layer_2 {
-            display-name = "EXTRA 2";
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-            >;
-        };
-
-        extra_layer_3 {
-            display-name = "EXTRA 3";
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-            >;
-        };
-
-        extra_layer_4 {
-            display-name = "EXTRA 4";
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-            >;
-        };
-
-        extra_layer_5 {
-            display-name = "EXTRA 5";
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-            >;
-        };
-
-        extra_layer_6 {
-            display-name = "EXTRA 6";
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
     };
