@@ -78,6 +78,22 @@
             quick-tap-ms = <175>;
             bindings = <&kp>, <&to>;
         };
+        // Backup shift on the Enter thumb. Tuned so a mis-classified press
+        // yields Shift (harmless) rather than Enter (sends the message):
+        // hold-trigger positions cover the LEFT half + left thumbs only, so
+        // rolling Enter into any right-hand key can never produce Shift, and
+        // the 250 ms term (longer than the HRMs) keeps sloppy Enter taps Enter.
+        sent: backup_shift_enter {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <250>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <150>;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-on-release;
+            hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38>;
+        };
         // Bracket morphs: tap = opener, shift (thumb hold) = closer.
         // mod-morph masks the triggering shift, so the alt-combos stay clean.
         mm_par: morph_parens {
@@ -122,6 +138,37 @@
 };
 
 / {
+    macros {
+        // German keeps ~ ^ ` behind dead keys; these send dead key + Space so
+        // the literal character comes out in one press (vim motions, code).
+        // Trade-off: composed characters (â, ñ) are not reachable from SYM.
+        lit_tilde: lit_tilde {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&kp LA(N) &kp SPACE>;
+        };
+        lit_caret: lit_caret {
+            // ^ is dead on mac AND win -> shared, no WIN_SYM override
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&kp GRAVE &kp SPACE>;
+        };
+        lit_grave: lit_grave {
+            // ` is dead on mac AND win -> shared, no WIN_SYM override
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&kp LS(EQUAL) &kp SPACE>;
+        };
+    };
+};
+
+/ {
     keymap {
         compatible = "zmk,keymap";
 
@@ -132,14 +179,15 @@
             //  Q   W   E   R   T  |  Y   U   I   O   P
             //  A   S   D   F   G  |  H   J   K   L  SL      S=Ctrl D=Opt F=Cmd | J=Cmd K=Opt L=Ctrl
             //  Z   X   C   V   B  |  N   M   ,   .  ESC     SL = sticky umlaut layer
-            //     TAB SPC ⇧/→L0 | BSPC ENT →L1              ESC = tap Esc / hold Hyper (⌃⌥⌘⇧)
+            //     TAB SPC ⇧/→L0 | BSPC ⇧/ENT →L1            ESC = tap Esc / hold Hyper (⌃⌥⌘⇧)
             //                                               ⇧/→L0 = hold Shift / tap go to L0
+            //                                               ⇧/ENT = tap Enter / hold backup Shift
 
             bindings = <
 &none  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp I  &kp O  &kp P  &none
 &none  &kp A  &hml LCTRL S  &hml LEFT_ALT D  &hml LCMD F  &kp G  &kp H  &hmr RCMD J  &hmr RIGHT_ALT K  &hmr RCTRL L  &sl UMLAUT  &none
 &none  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp M  &kp COMMA  &kp DOT  &mt LA(LC(LG(LEFT_SHIFT))) ESCAPE  &none
-&kp TAB  &kp SPACE  &sht LEFT_SHIFT BASE  &kp BACKSPACE  &kp ENTER  &to NUM
+&kp TAB  &kp SPACE  &sht LEFT_SHIFT BASE  &kp BACKSPACE  &sent LEFT_SHIFT ENTER  &to NUM
             >;
         };
 
@@ -150,30 +198,30 @@
             //  *   7   8   9   +  |  "   (   {   [   <     top right: openers
             //  =   4   5   6   0  |  ←   ↓   ↑   →  SL     hold thumb-Shift → ' ) } ] >
             //  /   1   2   3   -  |  !   ?   ;   :  ESC    4=Ctrl 5=Opt 6=Cmd (hold)
-            //     TAB SPC ⇧/→L0 | BSPC ENT →L2            
+            //     TAB SPC ⇧/→L0 | BSPC ⇧/ENT →L2
 
             bindings = <
 &none  &kp LS(RBKT)  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp RBKT  &mm_quot  &mm_par  &mm_cur  &mm_sqr  &kp NON_US_BSLH  &none
 &none  &kp LS(NUMBER_0)  &hml LCTRL NUMBER_4  &hml LEFT_ALT NUMBER_5  &hml LCMD NUMBER_6  &kp NUMBER_0  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &sl UMLAUT  &none
 &none  &kp LS(NUMBER_7)  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp SLASH  &kp LS(NUMBER_1)  &kp LS(MINUS)  &kp LS(COMMA)  &kp LS(PERIOD)  &mt LA(LC(LG(LEFT_SHIFT))) ESCAPE  &none
-&kp TAB  &kp SPACE  &sht LEFT_SHIFT BASE  &kp BACKSPACE  &kp ENTER  &to SYM
+&kp TAB  &kp SPACE  &sht LEFT_SHIFT BASE  &kp BACKSPACE  &sent LEFT_SHIFT ENTER  &to SYM
             >;
         };
 
         sym_layer {
             display-name = "SYM";
 
-            // sym_layer (L2) — remaining symbols / media / mouse
-            //  ~   &   |   ^   %  | 🔇  V−  V+  LED  ⊞     ⊞ = toggle mac/win mode
-            //  @   $   _   \   #  | m←  m↓  m↑  m→  SL     $=Ctrl _=Opt \=Cmd (hold)
-            //  ´   `   §   €      | Lc  Rc  s↓  s↑  ESC    m = mouse, c = click, s = scroll
-            //     TAB SPC ⇧/→L0 | BSPC ENT →L1
+            // sym_layer (L2) — symbols tuned for C# / vim
+            //  ~   &   |   ^   %  |  "   (   {   [   <     top right: same morphs
+            //  @   $   _   \   #  |  !   >   =   ;  SL     as NUM (shift = closer)
+            //  ´   `   §   €   °  | V−  V+  s↓  s↑  ESC    $=Ctrl _=Opt \=Cmd (hold)
+            //     TAB SPC ⇧/→L0 | BSPC ⇧/ENT →L1          ~ ^ ` are literal (macro)
 
             bindings = <
-&none  &kp LA(N)  &kp LS(NUMBER_6)  &kp LA(NUMBER_7)  &kp GRAVE  &kp LS(NUMBER_5)  &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP  &rgb_ug RGB_TOG  &tog WIN  &none
-&none  &kp LA(L)  &hml LCTRL LS(NUMBER_4)  &hml LEFT_ALT LS(SLASH)  &hml LCMD LS(LA(NUMBER_7))  &kp BSLH  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &sl UMLAUT  &none
-&none  &kp EQUAL  &kp LS(EQUAL)  &kp LS(NUMBER_3)  &kp RA(E)  &none  &mkp LCLK  &mkp RCLK  &msc SCRL_DOWN  &msc SCRL_UP  &mt LA(LC(LG(LEFT_SHIFT))) ESCAPE  &none
-&kp TAB  &kp SPACE  &sht LEFT_SHIFT BASE  &kp BACKSPACE  &kp ENTER  &to NUM
+&none  &lit_tilde  &kp LS(NUMBER_6)  &kp LA(NUMBER_7)  &lit_caret  &kp LS(NUMBER_5)  &mm_quot  &mm_par  &mm_cur  &mm_sqr  &kp NON_US_BSLH  &none
+&none  &kp LA(L)  &hml LCTRL LS(NUMBER_4)  &hml LEFT_ALT LS(SLASH)  &hml LCMD LS(LA(NUMBER_7))  &kp BSLH  &kp LS(NUMBER_1)  &kp LS(NON_US_BSLH)  &kp LS(NUMBER_0)  &kp LS(COMMA)  &sl UMLAUT  &none
+&none  &kp EQUAL  &lit_grave  &kp LS(NUMBER_3)  &kp RA(E)  &kp LS(GRAVE)  &kp C_VOL_DN  &kp C_VOL_UP  &msc SCRL_DOWN  &msc SCRL_UP  &mt LA(LC(LG(LEFT_SHIFT))) ESCAPE  &none
+&kp TAB  &kp SPACE  &sht LEFT_SHIFT BASE  &kp BACKSPACE  &sent LEFT_SHIFT ENTER  &to NUM
             >;
         };
 
@@ -224,12 +272,13 @@
         win_sym_layer {
             display-name = "WSYM";
 
-            // win_sym_layer — AltGr codes for ~ | @ \ plus the four positions
-            // masked by WIN_BASE ($/\ with win mods, mouse ↓/→).
+            // win_sym_layer — AltGr codes for ~ | @ \ { [ plus the four
+            // positions masked by WIN_BASE ($/\ with win mods, > and ;).
+            // ^ and ` stay &trans: dead on Windows too, shared lit_* macros.
 
             bindings = <
-&trans  &kp RA(RBKT)  &trans  &kp RA(NON_US_BSLH)  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &kp RA(Q)  &hml LGUI LS(NUMBER_4)  &trans  &hml LCTRL RA(MINUS)  &trans  &trans  &mmv MOVE_DOWN  &trans  &mmv MOVE_RIGHT  &trans  &trans
+&trans  &kp RA(RBKT)  &trans  &kp RA(NON_US_BSLH)  &trans  &trans  &trans  &trans  &mm_cur_win  &mm_sqr_win  &trans  &trans
+&trans  &kp RA(Q)  &hml LGUI LS(NUMBER_4)  &trans  &hml LCTRL RA(MINUS)  &trans  &trans  &kp LS(NON_US_BSLH)  &trans  &kp LS(COMMA)  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans
             >;
@@ -240,11 +289,16 @@
 
             // umlaut_layer (UMLAUT) — sticky overlay via SL; rest = &trans
             // thumbs: DEL on BSPC position, ⇧Enter on Enter position
-            //         | ü       ö 
-            //  ä   ß  |           
+            //      ⊞W      LEDR | ü       ö          mnemonic toggles:
+            //  ä   ß           |                     W=win mode, R=RGB
+            //                  |     🔇M              M=mute
+            // (sits above the WIN fix layers, so UMLAUT+W exits win mode too)
 
             bindings = <
-&none  &trans  &trans  &trans  &trans  &trans  &trans  &kp LBKT  &trans  &kp SEMI  &trans  &none  &none  &kp SINGLE_QUOTE  &kp MINUS  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none  &none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none  &trans  &trans  &trans  &kp DELETE  &kp LS(ENTER)  &trans
+&none  &trans  &tog WIN  &trans  &rgb_ug RGB_TOG  &trans  &trans  &kp LBKT  &trans  &kp SEMI  &trans  &none
+&none  &kp SINGLE_QUOTE  &kp MINUS  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none
+&none  &trans  &trans  &trans  &trans  &trans  &trans  &kp C_MUTE  &trans  &trans  &trans  &none
+&trans  &trans  &trans  &kp DELETE  &kp LS(ENTER)  &trans
             >;
         };
     };
