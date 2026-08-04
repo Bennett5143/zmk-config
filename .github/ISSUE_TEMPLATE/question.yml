@@ -1,0 +1,19 @@
+name: Question
+description: Ask about the keymap, the config, or how something works
+title: "[Question]: "
+labels: ["question"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: What would you like to know?
+      placeholder: e.g. How does the Windows mode toggle work?
+    validations:
+      required: true
+  - type: input
+    id: context
+    attributes:
+      label: Context (optional)
+      description: Which layer, behavior, or file does this relate to?
+      placeholder: e.g. SYM layer, home-row mods, keymap_drawer.config.yaml

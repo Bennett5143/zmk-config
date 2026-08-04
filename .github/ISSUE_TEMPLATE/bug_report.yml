@@ -1,0 +1,35 @@
+name: Bug report
+description: Something in the keymap or firmware build doesn't behave as expected
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, and what went wrong?
+      placeholder: e.g. Tapping the ( key on the NUM layer outputs 8 instead.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Host OS / mode
+      options:
+        - macOS (default mode)
+        - Windows (WIN mode toggled on)
+        - Other / not sure
+    validations:
+      required: true
+  - type: input
+    id: firmware
+    attributes:
+      label: Firmware version
+      description: Commit hash or Actions run the firmware was built from
+      placeholder: e.g. b2df466
