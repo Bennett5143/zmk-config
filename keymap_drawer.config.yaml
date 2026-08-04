@@ -1,2 +1,85 @@
 draw_config:
   dark_mode: auto
+
+parse_config:
+  # Prettier hold/utility labels
+  zmk_keycode_map:
+    LCTRL: Ctrl
+    RCTRL: Ctrl
+    LEFT_ALT: Opt
+    RIGHT_ALT: Opt
+    LCMD: Cmd
+    RCMD: Cmd
+    LGUI: Win
+    RGUI: Win
+    LEFT_SHIFT: Shift
+    ESCAPE: Esc
+    BACKSPACE: Bksp
+    ENTER: Enter
+    SPACE: Spc
+    DELETE: Del
+    C_VOL_DN: Vol-
+    C_VOL_UP: Vol+
+    C_MUTE: Mute
+    LEFT: "◀"
+    RIGHT: "▶"
+    UP: "▲"
+    DOWN: "▼"
+
+  # The keymap targets a German (QWERTZ) host layout, so raw HID chords are
+  # remapped to the character they actually produce.
+  raw_binding_map:
+    # NUM layer
+    "&kp LS(RBKT)": "*"
+    "&kp RBKT": "+"
+    "&kp LS(NUMBER_0)": "="
+    "&kp LS(NUMBER_7)": "/"
+    "&kp SLASH": "-"
+    "&kp LS(NUMBER_1)": "!"
+    "&kp LS(MINUS)": "?"
+    "&kp LS(COMMA)": ";"
+    "&kp LS(PERIOD)": ":"
+    "&kp NON_US_BSLH": {t: "<", s: ">"}
+    "&kp LS(NON_US_BSLH)": ">"
+    "&hml LCTRL NUMBER_4": {t: "4", h: Ctrl}
+    "&hml LEFT_ALT NUMBER_5": {t: "5", h: Opt}
+    "&hml LCMD NUMBER_6": {t: "6", h: Cmd}
+    # bracket/quote mod-morphs (tap = opener, shift = closer)
+    "&mm_par": {t: "(", s: ")"}
+    "&mm_cur": {t: "{", s: "}"}
+    "&mm_sqr": {t: "[", s: "]"}
+    "&mm_quot": {t: "\"", s: "'"}
+    "&mm_cur_win": {t: "{", s: "}"}
+    "&mm_sqr_win": {t: "[", s: "]"}
+    # SYM layer
+    "&lit_tilde": "~"
+    "&lit_caret": "^"
+    "&lit_grave": "`"
+    "&kp LS(NUMBER_6)": "&"
+    "&kp LA(NUMBER_7)": "|"
+    "&kp LS(NUMBER_5)": "%"
+    "&kp LA(L)": "@"
+    "&kp BSLH": "#"
+    "&kp EQUAL": "´"
+    "&kp LS(NUMBER_3)": "§"
+    "&kp RA(E)": "€"
+    "&kp LS(GRAVE)": "°"
+    "&hml LCTRL LS(NUMBER_4)": {t: "$", h: Ctrl}
+    "&hml LEFT_ALT LS(SLASH)": {t: "_", h: Opt}
+    "&hml LCMD LS(LA(NUMBER_7))": {t: "\\", h: Cmd}
+    # WIN overlay layers (AltGr codes)
+    "&kp RA(RBKT)": "~"
+    "&kp RA(NON_US_BSLH)": "|"
+    "&kp RA(Q)": "@"
+    "&hml LGUI LS(NUMBER_4)": {t: "$", h: Win}
+    "&hml LCTRL RA(MINUS)": {t: "\\", h: Ctrl}
+    "&hml LGUI NUMBER_4": {t: "4", h: Win}
+    "&hml LCTRL NUMBER_6": {t: "6", h: Ctrl}
+    # UMLAUT layer
+    "&kp LBKT": "ü"
+    "&kp SEMI": "ö"
+    "&kp SINGLE_QUOTE": "ä"
+    "&kp MINUS": "ß"
+    "&kp LS(ENTER)": "⇧⏎"
+    # misc
+    "&mt LA(LC(LG(LEFT_SHIFT))) ESCAPE": {t: Esc, h: Hyper}
