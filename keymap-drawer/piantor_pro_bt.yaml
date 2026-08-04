@@ -1,0 +1,346 @@
+layout: {zmk_keyboard: piantor_pro_bt, layout_name: default_layout}
+layers:
+  L0:
+  - ''
+  - Q
+  - W
+  - E
+  - R
+  - T
+  - Y
+  - U
+  - I
+  - O
+  - P
+  - ''
+  - ''
+  - A
+  - {t: S, h: LCTRL}
+  - {t: D, h: LEFT ALT}
+  - {t: F, h: LCMD}
+  - G
+  - H
+  - {t: J, h: RCMD}
+  - {t: K, h: RIGHT ALT}
+  - {t: L, h: RCTRL}
+  - {t: UML, h: sticky}
+  - ''
+  - ''
+  - Z
+  - X
+  - C
+  - V
+  - B
+  - N
+  - M
+  - ','
+  - .
+  - {t: ESCAPE, h: Alt+Ctl+Gui+LEFT SHIFT}
+  - ''
+  - TAB
+  - SPACE
+  - {t: L0, h: LEFT SHIFT}
+  - BACKSPACE
+  - {t: ENTER, h: LEFT SHIFT}
+  - {t: NUM, h: toggle}
+  NUM:
+  - ''
+  - Sft+]
+  - '7'
+  - '8'
+  - '9'
+  - ']'
+  - {t: Sft+2, s: Sft+\}
+  - {t: Sft+8, s: Sft+9}
+  - {t: Alt+8, s: Alt+9}
+  - {t: Alt+5, s: Alt+6}
+  - '|'
+  - ''
+  - ''
+  - Sft+0
+  - {t: '4', h: LCTRL}
+  - {t: '5', h: LEFT ALT}
+  - {t: '6', h: LCMD}
+  - '0'
+  - LEFT
+  - DOWN
+  - UP
+  - RIGHT
+  - {t: UML, h: sticky}
+  - ''
+  - ''
+  - Sft+7
+  - '1'
+  - '2'
+  - '3'
+  - /
+  - Sft+1
+  - Sft+-
+  - Sft+,
+  - Sft+.
+  - {t: ESCAPE, h: Alt+Ctl+Gui+LEFT SHIFT}
+  - ''
+  - TAB
+  - SPACE
+  - {t: L0, h: LEFT SHIFT}
+  - BACKSPACE
+  - {t: ENTER, h: LEFT SHIFT}
+  - {t: SYM, h: toggle}
+  SYM:
+  - ''
+  - '&lit_tilde'
+  - Sft+6
+  - Alt+7
+  - '&lit_caret'
+  - Sft+5
+  - {t: Sft+2, s: Sft+\}
+  - {t: Sft+8, s: Sft+9}
+  - {t: Alt+8, s: Alt+9}
+  - {t: Alt+5, s: Alt+6}
+  - '|'
+  - ''
+  - ''
+  - Alt+L
+  - {t: Sft+4, h: LCTRL}
+  - {t: Sft+/, h: LEFT ALT}
+  - {t: Sft+Alt+7, h: LCMD}
+  - \
+  - Sft+1
+  - Sft+|
+  - Sft+0
+  - Sft+,
+  - {t: UML, h: sticky}
+  - ''
+  - ''
+  - '='
+  - '&lit_grave'
+  - Sft+3
+  - AltGr+E
+  - Sft+`
+  - VOL DN
+  - VOL UP
+  - '&msc SCRL_DOWN'
+  - '&msc SCRL_UP'
+  - {t: ESCAPE, h: Alt+Ctl+Gui+LEFT SHIFT}
+  - ''
+  - TAB
+  - SPACE
+  - {t: L0, h: LEFT SHIFT}
+  - BACKSPACE
+  - {t: ENTER, h: LEFT SHIFT}
+  - {t: NUM, h: toggle}
+  WIN:
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  WBASE:
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: S, h: LGUI}
+  - {t: ▽, type: trans}
+  - {t: F, h: LCTRL}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: J, h: RCTRL}
+  - {t: ▽, type: trans}
+  - {t: L, h: RGUI}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  WNUM:
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: AltGr+7, s: AltGr+0}
+  - {t: AltGr+8, s: AltGr+9}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: '4', h: LGUI}
+  - {t: ▽, type: trans}
+  - {t: '6', h: LCTRL}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - DOWN
+  - {t: ▽, type: trans}
+  - RIGHT
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  WSYM:
+  - {t: ▽, type: trans}
+  - AltGr+]
+  - {t: ▽, type: trans}
+  - AltGr+|
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: AltGr+7, s: AltGr+0}
+  - {t: AltGr+8, s: AltGr+9}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - AltGr+Q
+  - {t: Sft+4, h: LGUI}
+  - {t: ▽, type: trans}
+  - {t: AltGr+-, h: LCTRL}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - Sft+|
+  - {t: ▽, type: trans}
+  - Sft+,
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  UML:
+  - ''
+  - {t: ▽, type: trans}
+  - {t: WIN, h: toggle}
+  - {t: ▽, type: trans}
+  - RGB TOG
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - '['
+  - {t: ▽, type: trans}
+  - ;
+  - {t: ▽, type: trans}
+  - ''
+  - ''
+  - ''''
+  - '-'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {type: held}
+  - ''
+  - ''
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - MUTE
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ''
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - DELETE
+  - Sft+ENTER
+  - {t: ▽, type: trans}
