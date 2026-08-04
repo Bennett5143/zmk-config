@@ -15,14 +15,14 @@ layers:
   - ''
   - ''
   - A
-  - {t: S, h: LCTRL}
-  - {t: D, h: LEFT ALT}
-  - {t: F, h: LCMD}
+  - {t: S, h: Ctrl}
+  - {t: D, h: Opt}
+  - {t: F, h: Cmd}
   - G
   - H
-  - {t: J, h: RCMD}
-  - {t: K, h: RIGHT ALT}
-  - {t: L, h: RCTRL}
+  - {t: J, h: Cmd}
+  - {t: K, h: Opt}
+  - {t: L, h: Ctrl}
   - {t: UML, h: sticky}
   - ''
   - ''
@@ -33,101 +33,101 @@ layers:
   - B
   - N
   - M
-  - ','
-  - .
-  - {t: ESCAPE, h: Alt+Ctl+Gui+LEFT SHIFT}
+  - COMMA
+  - DOT
+  - {t: Esc, h: Hyper}
   - ''
   - TAB
-  - SPACE
-  - {t: L0, h: LEFT SHIFT}
-  - BACKSPACE
-  - {t: ENTER, h: LEFT SHIFT}
+  - Spc
+  - {t: L0, h: Shift}
+  - Bksp
+  - {t: Enter, h: Shift}
   - {t: NUM, h: toggle}
   NUM:
   - ''
-  - Sft+]
+  - '*'
   - '7'
   - '8'
   - '9'
-  - ']'
-  - {t: Sft+2, s: Sft+\}
-  - {t: Sft+8, s: Sft+9}
-  - {t: Alt+8, s: Alt+9}
-  - {t: Alt+5, s: Alt+6}
-  - '|'
-  - ''
-  - ''
-  - Sft+0
-  - {t: '4', h: LCTRL}
-  - {t: '5', h: LEFT ALT}
-  - {t: '6', h: LCMD}
-  - '0'
-  - LEFT
-  - DOWN
-  - UP
-  - RIGHT
-  - {t: UML, h: sticky}
-  - ''
-  - ''
-  - Sft+7
-  - '1'
-  - '2'
-  - '3'
-  - /
-  - Sft+1
-  - Sft+-
-  - Sft+,
-  - Sft+.
-  - {t: ESCAPE, h: Alt+Ctl+Gui+LEFT SHIFT}
-  - ''
-  - TAB
-  - SPACE
-  - {t: L0, h: LEFT SHIFT}
-  - BACKSPACE
-  - {t: ENTER, h: LEFT SHIFT}
-  - {t: SYM, h: toggle}
-  SYM:
-  - ''
-  - '&lit_tilde'
-  - Sft+6
-  - Alt+7
-  - '&lit_caret'
-  - Sft+5
-  - {t: Sft+2, s: Sft+\}
-  - {t: Sft+8, s: Sft+9}
-  - {t: Alt+8, s: Alt+9}
-  - {t: Alt+5, s: Alt+6}
-  - '|'
-  - ''
-  - ''
-  - Alt+L
-  - {t: Sft+4, h: LCTRL}
-  - {t: Sft+/, h: LEFT ALT}
-  - {t: Sft+Alt+7, h: LCMD}
-  - \
-  - Sft+1
-  - Sft+|
-  - Sft+0
-  - Sft+,
-  - {t: UML, h: sticky}
+  - +
+  - {t: '"', s: ''''}
+  - {t: (, s: )}
+  - {t: '{', s: '}'}
+  - {t: '[', s: ']'}
+  - {t: <, s: '>'}
   - ''
   - ''
   - '='
-  - '&lit_grave'
-  - Sft+3
-  - AltGr+E
-  - Sft+`
-  - VOL DN
-  - VOL UP
-  - '&msc SCRL_DOWN'
-  - '&msc SCRL_UP'
-  - {t: ESCAPE, h: Alt+Ctl+Gui+LEFT SHIFT}
+  - {t: '4', h: Ctrl}
+  - {t: '5', h: Opt}
+  - {t: '6', h: Cmd}
+  - '0'
+  - ◀
+  - ▼
+  - ▲
+  - ▶
+  - {t: UML, h: sticky}
+  - ''
+  - ''
+  - /
+  - '1'
+  - '2'
+  - '3'
+  - '-'
+  - '!'
+  - '?'
+  - ;
+  - ':'
+  - {t: Esc, h: Hyper}
   - ''
   - TAB
-  - SPACE
-  - {t: L0, h: LEFT SHIFT}
-  - BACKSPACE
-  - {t: ENTER, h: LEFT SHIFT}
+  - Spc
+  - {t: L0, h: Shift}
+  - Bksp
+  - {t: Enter, h: Shift}
+  - {t: SYM, h: toggle}
+  SYM:
+  - ''
+  - '~'
+  - '&'
+  - '|'
+  - ^
+  - '%'
+  - {t: '"', s: ''''}
+  - {t: (, s: )}
+  - {t: '{', s: '}'}
+  - {t: '[', s: ']'}
+  - {t: <, s: '>'}
+  - ''
+  - ''
+  - '@'
+  - {t: $, h: Ctrl}
+  - {t: _, h: Opt}
+  - {t: \, h: Cmd}
+  - '#'
+  - '!'
+  - '>'
+  - '='
+  - ;
+  - {t: UML, h: sticky}
+  - ''
+  - ''
+  - ´
+  - '`'
+  - §
+  - €
+  - °
+  - Vol-
+  - Vol+
+  - '&msc SCRL_DOWN'
+  - '&msc SCRL_UP'
+  - {t: Esc, h: Hyper}
+  - ''
+  - TAB
+  - Spc
+  - {t: L0, h: Shift}
+  - Bksp
+  - {t: Enter, h: Shift}
   - {t: NUM, h: toggle}
   WIN:
   - {t: ▽, type: trans}
@@ -187,14 +187,14 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: S, h: LGUI}
+  - {t: S, h: Win}
   - {t: ▽, type: trans}
-  - {t: F, h: LCTRL}
+  - {t: F, h: Ctrl}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: J, h: RCTRL}
+  - {t: J, h: Ctrl}
   - {t: ▽, type: trans}
-  - {t: L, h: RGUI}
+  - {t: L, h: Win}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -224,20 +224,20 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: AltGr+7, s: AltGr+0}
-  - {t: AltGr+8, s: AltGr+9}
+  - {t: '{', s: '}'}
+  - {t: '[', s: ']'}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: '4', h: LGUI}
+  - {t: '4', h: Win}
   - {t: ▽, type: trans}
-  - {t: '6', h: LCTRL}
+  - {t: '6', h: Ctrl}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - DOWN
+  - ▼
   - {t: ▽, type: trans}
-  - RIGHT
+  - ▶
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -260,27 +260,27 @@ layers:
   - {t: ▽, type: trans}
   WSYM:
   - {t: ▽, type: trans}
-  - AltGr+]
+  - '~'
   - {t: ▽, type: trans}
-  - AltGr+|
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: AltGr+7, s: AltGr+0}
-  - {t: AltGr+8, s: AltGr+9}
+  - '|'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - AltGr+Q
-  - {t: Sft+4, h: LGUI}
   - {t: ▽, type: trans}
-  - {t: AltGr+-, h: LCTRL}
+  - {t: '{', s: '}'}
+  - {t: '[', s: ']'}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - Sft+|
   - {t: ▽, type: trans}
-  - Sft+,
+  - '@'
+  - {t: $, h: Win}
+  - {t: ▽, type: trans}
+  - {t: \, h: Ctrl}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - '>'
+  - {t: ▽, type: trans}
+  - ;
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -309,14 +309,14 @@ layers:
   - RGB TOG
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - '['
+  - ü
   - {t: ▽, type: trans}
-  - ;
+  - ö
   - {t: ▽, type: trans}
   - ''
   - ''
-  - ''''
-  - '-'
+  - ä
+  - ß
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -333,7 +333,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - MUTE
+  - Mute
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -341,6 +341,6 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - DELETE
-  - Sft+ENTER
+  - Del
+  - ⇧⏎
   - {t: ▽, type: trans}
