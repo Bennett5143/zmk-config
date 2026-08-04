@@ -17,3 +17,5 @@ jobs:
       keymap_patterns: "config/*.keymap"
       config_path: "keymap_drawer.config.yaml"
       output_folder: "keymap-drawer"
+      # WIN is a pure flag layer (all &trans) — skip it in the render
+      draw_args: "piantor_pro_bt:'-s L0 NUM SYM WBASE WNUM WSYM UML'"
