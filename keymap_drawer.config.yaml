@@ -2,8 +2,10 @@ draw_config:
   dark_mode: auto
 
 parse_config:
-  # Prettier hold/utility labels
+  # Prettier hold/utility labels; Y/Z swapped for the QWERTZ host layout
   zmk_keycode_map:
+    Y: Z
+    Z: Y
     LCTRL: Ctrl
     RCTRL: Ctrl
     LEFT_ALT: Opt
