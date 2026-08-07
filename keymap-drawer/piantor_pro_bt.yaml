@@ -37,7 +37,7 @@ layers:
   - DOT
   - {t: Esc, h: Hyper}
   - ''
-  - TAB
+  - {t: Tab, h: Hyper}
   - Spc
   - {t: L0, h: Shift}
   - Bksp
@@ -80,7 +80,7 @@ layers:
   - ':'
   - {t: Esc, h: Hyper}
   - ''
-  - TAB
+  - {t: Tab, h: Hyper}
   - Spc
   - {t: L0, h: Shift}
   - Bksp
@@ -123,7 +123,7 @@ layers:
   - '&msc SCRL_UP'
   - {t: Esc, h: Hyper}
   - ''
-  - TAB
+  - {t: Tab, h: Hyper}
   - Spc
   - {t: L0, h: Shift}
   - Bksp
