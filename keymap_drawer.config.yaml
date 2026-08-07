@@ -85,3 +85,4 @@ parse_config:
     "&kp LS(ENTER)": "⇧⏎"
     # misc
     "&mt LA(LC(LG(LEFT_SHIFT))) ESCAPE": {t: Esc, h: Hyper}
+    "&tht LA(LC(LG(LEFT_SHIFT))) TAB": {t: Tab, h: Hyper}
